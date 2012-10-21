@@ -11,20 +11,20 @@ import se.inax.dot.generator.render.directed.DirectedLinkRenderer;
 public class DirectedGraphGenerator extends DotGenerator {
 
 	@Override
-	public void generateHeader(PrintWriter out, String graphName) {
-		DotRenderer node = new DirectedGraphHeaderRenderer(graphName);
+	public void generateHeader(final PrintWriter out, final String graphName) {
+		final DotRenderer node = new DirectedGraphHeaderRenderer(graphName);
 		node.render(out);
 	}
 
 	@Override
-	public void generateEdge(PrintWriter out, String source, String destination) {
-		DotRenderer node = new DirectedLinkRenderer(source, destination);
+	public void generateEdge(final PrintWriter out, final String source, final String destination) {
+		final DotRenderer node = new DirectedLinkRenderer(source, destination);
 		node.render(out);
 	}
 
 	@Override
-	public void generateEdge(PrintWriter out, String source, String destination, OptionsRenderer options) {
-		DotRenderer node = new DirectedLinkRenderer(source, destination, options);
+	public void generateEdge(final PrintWriter out, final String source, final String destination, final OptionsRenderer options) {
+		final DotRenderer node = new DirectedLinkRenderer(source, destination, options);
 		node.render(out);
 	}
 

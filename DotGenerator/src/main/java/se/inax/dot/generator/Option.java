@@ -5,8 +5,8 @@ import se.inax.dot.generator.render.AttributeRenderer;
 public class Option {
 	private final String key;
 	private final String value;
-	
-	Option(String key, String value) {
+
+	Option(final String key, final String value) {
 		this.key = key;
 		this.value = value;
 	}
@@ -18,7 +18,7 @@ public class Option {
 	public String getValue() {
 		return value;
 	}
-	
+
 	public AttributeRenderer createRenderer() {
 		return new AttributeRenderer(key, value);
 	}

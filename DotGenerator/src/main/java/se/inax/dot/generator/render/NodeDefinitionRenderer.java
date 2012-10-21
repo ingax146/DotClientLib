@@ -6,9 +6,9 @@ import se.inax.dot.generator.DotRenderer;
 /**
  * NodeDefinitionRenderer is a renderer designed to render a node definition.
  * 
- * A node definition contains a node name (this is a dot-name) and a set of 
+ * A node definition contains a node name (this is a dot-name) and a set of
  * node options. Notice that the dot-name is not shown if there is a 'label'
- * option present. Hence the graph library uses labels for all output. 
+ * option present. Hence the graph library uses labels for all output.
  * Dot-names are only used internally by the library, this to make processing
  * and generation of graphs easier and faster.
  * 
@@ -18,33 +18,33 @@ import se.inax.dot.generator.DotRenderer;
 public class NodeDefinitionRenderer implements DotRenderer {
 	OptionsRenderer options = new OptionsRenderer();
 	final String nodeName;
-	
-	public NodeDefinitionRenderer(String name) {
+
+	public NodeDefinitionRenderer(final String name) {
 		nodeName = name;
 	}
 
-	public NodeDefinitionRenderer(String name, OptionsRenderer or) {
+	public NodeDefinitionRenderer(final String name, final OptionsRenderer or) {
 		nodeName = name;
 		options = or;
 	}
 
 	@Override
-	public void render(PrintWriter out) {
+	public void render(final PrintWriter out) {
 		renderIndentation(out);
 		renderNodeName(out);
 		options.render(out);
 		renderNodeEnd(out);
 	}
 
-	private void renderIndentation(PrintWriter out) {
+	private void renderIndentation(final PrintWriter out) {
 		out.print("\t");
 	}
-	
-	private void renderNodeName(PrintWriter out) {
+
+	private void renderNodeName(final PrintWriter out) {
 		out.print(nodeName);
 	}
-	
-	private void renderNodeEnd(PrintWriter out) {
+
+	private void renderNodeEnd(final PrintWriter out) {
 		out.println(";");
 	}
 }

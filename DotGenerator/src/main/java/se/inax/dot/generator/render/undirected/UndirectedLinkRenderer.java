@@ -8,25 +8,24 @@ import se.inax.dot.generator.render.OptionsRenderer;
 
 /**
  * UndirectedLinkRenderer, use this class to render undirected links in a
- * directed link graph. It works by setting the arrowhead option, and not 
- * by 
+ * directed link graph. It works by setting the arrowhead option.
  * 
  * @author Ingemar Axelsson <ingemar.axelsson@gmail.com>
  *
  */
-public class UndirectedLinkRenderer extends LinkRenderer {
+public final class UndirectedLinkRenderer extends LinkRenderer {
 
-	public UndirectedLinkRenderer(String sourceName, String destName) {
-		super(sourceName, destName);
+	public UndirectedLinkRenderer(final String sourceName, final String destName) {
+		this(sourceName, destName, new OptionsRenderer());
+	}
+
+	public UndirectedLinkRenderer(final String sourceName, final String destName, final OptionsRenderer or) {
+		super(sourceName, destName, or);
 		getOptionsRenderer().add(new AttributeRenderer("arrowhead", "none"));
 	}
 
-	public UndirectedLinkRenderer(String sourceName, String destName, OptionsRenderer or) {
-		super(sourceName, destName, or);
-	}
-	
 	@Override
-	protected void renderLinkArrow(PrintWriter out) {
+	protected void renderLinkArrow(final PrintWriter out) {
 		out.println("--");
 	}
 }

@@ -3,22 +3,38 @@ package se.inax.dot.generator.render;
 import java.io.PrintWriter;
 
 /**
- * Renders apostrophes around the value. 
+ * Renders apostrophes around the value. This is useful for
+ * rendering string labels.
  * 
- * @author Ingemar Axelsson<ingemar.axelsson@emc.com>
+ * @author Ingemar Axelsson<ingemar.axelsson@gmail.com>
  *
  */
 public class StringAttributeRenderer extends AttributeRenderer {
 
-	public StringAttributeRenderer(String key, String value) {
+	/**
+	 * 
+	 * @param key
+	 * @param value
+	 */
+	public StringAttributeRenderer(final String key, final String value) {
 		super(key, value);
 	}
 
-	protected void preRenderValue(PrintWriter out) {
+	/*
+	 * (non-Javadoc)
+	 * @see se.inax.dot.generator.render.AttributeRenderer#preRenderValue(java.io.PrintWriter)
+	 */
+	@Override
+	protected void preRenderValue(final PrintWriter out) {
 		out.print("\"");
 	}
-	
-	protected void postRenderValue(PrintWriter out) {
+
+	/*
+	 * (non-Javadoc)
+	 * @see se.inax.dot.generator.render.AttributeRenderer#postRenderValue(java.io.PrintWriter)
+	 */
+	@Override
+	protected void postRenderValue(final PrintWriter out) {
 		out.print("\"");
 	}
 }

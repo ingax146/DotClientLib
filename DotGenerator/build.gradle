@@ -28,7 +28,7 @@ apply plugin: 'java';
 apply plugin: 'eclipse';
 
 implementationTitle = 'Dot Generator';
-version = '1.0';
+version = '1.0-dev';
 sourceCompatibility = '1.7';
 targetCompatibility = '1.7';
 
@@ -42,9 +42,6 @@ dependencies {
 	testCompile 'junit:junit:4.10';
 }
 
-/*
- * The upload archives has been disabled because this project aims to
- * create a tool, not a library. So there is nothing to upload.
 uploadArchives {
 	repositories {
 	   flatDir {
@@ -52,4 +49,3 @@ uploadArchives {
 	   }
 	}
 }
-*/

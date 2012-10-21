@@ -7,13 +7,14 @@ import java.util.List;
 import se.inax.dot.generator.DotRenderer;
 
 public class OptionsRenderer implements DotRenderer {
-	private List<AttributeRenderer> attributeRenderers = new ArrayList<AttributeRenderer>();
-	
-	public void add(AttributeRenderer attribute) {
+	private final List<AttributeRenderer> attributeRenderers = new ArrayList<AttributeRenderer>();
+
+	public void add(final AttributeRenderer attribute) {
 		attributeRenderers.add(attribute);
 	}
 
-	public void render(PrintWriter out) {
+	@Override
+	public void render(final PrintWriter out) {
 		if (attributeRenderers.isEmpty()) {
 			return;
 		}
@@ -22,17 +23,17 @@ public class OptionsRenderer implements DotRenderer {
 		renderEpilogue(out);
 	}
 
-	private void renderEpilogue(PrintWriter out) {
+	private void renderEpilogue(final PrintWriter out) {
 		out.print("]");
 	}
 
-	private void renderPrologue(PrintWriter out) {
+	private void renderPrologue(final PrintWriter out) {
 		out.print(" [");
 	}
 
-	private void renderAttributes(PrintWriter out) {
+	private void renderAttributes(final PrintWriter out) {
 		boolean first = true;
-		for(AttributeRenderer ar : attributeRenderers) {
+		for(final AttributeRenderer ar : attributeRenderers) {
 			if (first) {
 				first = false;
 			} else {
@@ -42,7 +43,7 @@ public class OptionsRenderer implements DotRenderer {
 		}
 	}
 
-	private void renderAttributeSeparator(PrintWriter out) {
+	private void renderAttributeSeparator(final PrintWriter out) {
 		out.print(", ");
 	}
 

@@ -8,13 +8,13 @@ import se.inax.dot.generator.render.OptionsRenderer;
 public class OptionsBuilder {
 	List<Option> renderers = new ArrayList<Option>();
 
-	public void add(Option attribute) {
+	public void add(final Option attribute) {
 		renderers.add(attribute);
 	}
 
 	public OptionsRenderer createRenderer() {
-		OptionsRenderer or = new OptionsRenderer();
-		for(Option option : renderers) {
+		final OptionsRenderer or = new OptionsRenderer();
+		for(final Option option : renderers) {
 			or.add(option.createRenderer());
 		}
 		return or;

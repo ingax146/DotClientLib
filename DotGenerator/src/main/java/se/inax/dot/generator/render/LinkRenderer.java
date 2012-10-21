@@ -4,23 +4,36 @@ import java.io.PrintWriter;
 
 import se.inax.dot.generator.DotRenderer;
 
+/**
+ * The LinkRenderer class is an abstract class implementing the most
+ * basic link behavior.
+ * 
+ * @author Ingemar Axelsson <ingemar.axelsson@gmail.com>
+ *
+ */
 public abstract class LinkRenderer implements DotRenderer {
 	private final String source;
 	private final String destination;
 	private OptionsRenderer options = new OptionsRenderer();
-	
-	public LinkRenderer(String sourceName, String destName) {
+
+	public LinkRenderer(final String sourceName, final String destName) {
 		this(sourceName, destName, new OptionsRenderer());
 	}
 
-	public LinkRenderer(String sourceName, String destName, OptionsRenderer or) {
+	public LinkRenderer(final String sourceName, final String destName, OptionsRenderer or) {
+		if (or == null) {
+			or = new OptionsRenderer();
+		}
 		source = sourceName;
 		destination = destName;
 		options = or;
 	}
 
 	@Override
-	public void render(PrintWriter out) {
+	public void render(final PrintWriter out) {
+		if (out == null) {
+			return;
+		}
 		renderIndentation(out);
 		renderSource(out);
 		renderLink(out);
@@ -29,42 +42,42 @@ public abstract class LinkRenderer implements DotRenderer {
 		renderLinkEnd(out);
 	}
 
-	protected void renderOptions(PrintWriter out) {
+	protected void renderOptions(final PrintWriter out) {
 		options.render(out);
 	}
 
-	protected void renderDestination(PrintWriter out) {
+	protected void renderDestination(final PrintWriter out) {
 		out.print(destination);
 	}
 
-	protected void renderSource(PrintWriter out) {
+	protected void renderSource(final PrintWriter out) {
 		out.print(source);
 	}
 
-	protected void renderLinkEnd(PrintWriter out) {
+	protected void renderLinkEnd(final PrintWriter out) {
 		out.println(";");
 	}
 
-	protected void renderLink(PrintWriter out) {
+	protected void renderLink(final PrintWriter out) {
 		renderPreLink(out);
 		renderLinkArrow(out);
 		renderPostLink(out);
 	}
 
-	protected void renderPostLink(PrintWriter out) {
+	protected void renderPostLink(final PrintWriter out) {
 		out.print(" ");
 	}
 
 	protected abstract void renderLinkArrow(PrintWriter out);
 
-	protected void renderPreLink(PrintWriter out) {
+	protected void renderPreLink(final PrintWriter out) {
 		out.print(" ");
 	}
 
-	protected void renderIndentation(PrintWriter out) {
+	protected void renderIndentation(final PrintWriter out) {
 		out.print("\t");
 	}
-	
+
 	protected OptionsRenderer getOptionsRenderer() {
 		return options;
 	}

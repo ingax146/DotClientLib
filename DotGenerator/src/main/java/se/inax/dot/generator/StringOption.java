@@ -5,10 +5,11 @@ import se.inax.dot.generator.render.StringAttributeRenderer;
 
 public class StringOption extends Option {
 
-	StringOption(String key, String value) {
+	StringOption(final String key, final String value) {
 		super(key, value);
 	}
 
+	@Override
 	public AttributeRenderer createRenderer() {
 		return new StringAttributeRenderer(getKey(), getValue());
 	}

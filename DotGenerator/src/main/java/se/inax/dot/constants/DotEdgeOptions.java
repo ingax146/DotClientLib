@@ -28,7 +28,7 @@ public enum DotEdgeOptions {
 	headtooltip,
 	href,
 	id,
-	label, 
+	label,
 	labelURL,
 	labelangle,
 	labeldistance,

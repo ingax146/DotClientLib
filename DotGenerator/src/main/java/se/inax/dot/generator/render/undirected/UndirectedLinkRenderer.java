@@ -26,6 +26,6 @@ public final class UndirectedLinkRenderer extends LinkRenderer {
 
 	@Override
 	protected void renderLinkArrow(final PrintWriter out) {
-		out.println("--");
+		out.print("--");
 	}
 }

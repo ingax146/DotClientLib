@@ -2,15 +2,16 @@ package se.inax.dot.generator;
 
 import java.io.PrintWriter;
 
-import se.inax.dot.constants.DotEdgeOptions;
-import se.inax.dot.constants.DotNodeOptions;
+import se.inax.dot.constants.ArrowType;
+import se.inax.dot.constants.DirType;
 import se.inax.dot.constants.DotPolygonBasedShapes;
+import se.inax.dot.constants.EdgeOptions;
+import se.inax.dot.constants.NodeOptions;
 import se.inax.dot.generator.directed.DirectedGraphGenerator;
-import se.inax.dot.generator.render.AttributeRenderer;
 import se.inax.dot.generator.render.GraphFooterRenderer;
 import se.inax.dot.generator.render.NodeDefinitionRenderer;
-import se.inax.dot.generator.render.OptionsRenderer;
 import se.inax.dot.generator.undirected.UndirectedGraphGenerator;
+import se.inax.dot.propertymodel.DotEscapedString;
 
 /**
  * The DotGenerator is a streaming api for generate DOT graphs. That is
@@ -92,7 +93,7 @@ public abstract class DotGenerator {
 	 * @param name
 	 * @param options
 	 */
-	public void generateNode(final PrintWriter out, final String name, final OptionsRenderer options) {
+	public void generateNode(final PrintWriter out, final String name, final Options options) {
 		final DotRenderer node = new NodeDefinitionRenderer(name, options);
 		node.render(out);
 	}
@@ -113,7 +114,7 @@ public abstract class DotGenerator {
 	 * @param destination	Name of destination node, or new name if new node should be created.
 	 * @param options		Edge options.
 	 */
-	public abstract void generateEdge(PrintWriter out, String source, String destination, OptionsRenderer options);
+	public abstract void generateEdge(PrintWriter out, String source, String destination, Options options);
 
 	/**
 	 * Generate a note. This is a helper method creating a node definition using the note shape.
@@ -123,9 +124,9 @@ public abstract class DotGenerator {
 	 */
 	public void generateNote(final PrintWriter out, final String name) {
 		final OptionsBuilder options = createOptionsBuilder();
-		options.add(new Option(DotNodeOptions.shape.toString(), DotPolygonBasedShapes.note.toString()));
+		options.add(new Option(NodeOptions.shape.toString(), DotPolygonBasedShapes.note.toString()));
 
-		final DotRenderer node = new NodeDefinitionRenderer(name, options.createRenderer());
+		final DotRenderer node = new NodeDefinitionRenderer(name, options.buildOptions());
 		node.render(out);
 	}
 
@@ -136,10 +137,10 @@ public abstract class DotGenerator {
 	 * @param name
 	 * @param or
 	 */
-	public void generateNote(final PrintWriter out, final String name, final OptionsRenderer or) {
-		or.add(new AttributeRenderer("shape", DotPolygonBasedShapes.note.toString()));
+	public void generateNote(final PrintWriter out, final String name, final Options os) {
+		os.add(new Option("shape", DotPolygonBasedShapes.note.toString()));
 
-		final DotRenderer node = new NodeDefinitionRenderer(name, or);
+		final DotRenderer node = new NodeDefinitionRenderer(name, os);
 		node.render(out);
 	}
 
@@ -153,23 +154,41 @@ public abstract class DotGenerator {
 	}
 
 	public Option createShapeOption(final DotPolygonBasedShapes aShape) {
-		final Option anOption = new Option(DotNodeOptions.shape.toString(), aShape.toString());
+		final Option anOption = new Option(NodeOptions.shape.toString(), aShape.toString());
 		return anOption;
 	}
 
-	public Option createEdgeOption(final DotEdgeOptions key, final String value) {
+	public Option createEdgeOption(final EdgeOptions key, final ArrowType value) {
+		return createEdgeOption(key, value.toString());
+	}
+
+	public Option createEdgeOption(final EdgeOptions key, final DirType value) {
+		return createEdgeOption(key, value.toString());
+	}
+
+	public Option createEdgeOption(final EdgeOptions key, final String value) {
+		if (isStringTypeOption(key.getType())) {
+			return new StringOption(key.toString(), value);
+		}
 		return new Option(key.toString(), value);
 	}
 
-	public Option createStringEdgeOption(final DotEdgeOptions key, final String value) {
-		return new StringOption(key.toString(), value);
-	}
-
-	public Option createNodeOption(final DotNodeOptions key, final String value) {
+	public Option createNodeOption(final NodeOptions key, final String value) {
+		if (isStringTypeOption(key.getType())) {
+			return new StringOption(key.toString(), value);
+		}
 		return new Option(key.toString(), value);
 	}
 
-	public Option createStringNodeOption(final DotNodeOptions key, final String value) {
-		return new StringOption(key.toString(), value);
+	private boolean isStringTypeOption(Class<?> keyType) {
+		if (keyType == null) {
+			return false;
+		}
+		return keyType.equals(DotEscapedString.class);
+	}
+
+
+	public static Options createEmptyOptions() {
+		return new OptionsImpl();
 	}
 }

@@ -3,6 +3,7 @@ package se.inax.dot.generator.render;
 import java.io.PrintWriter;
 
 import se.inax.dot.generator.DotRenderer;
+import se.inax.dot.generator.Options;
 /**
  * NodeDefinitionRenderer is a renderer designed to render a node definition.
  * 
@@ -16,16 +17,17 @@ import se.inax.dot.generator.DotRenderer;
  *
  */
 public class NodeDefinitionRenderer implements DotRenderer {
-	OptionsRenderer options = new OptionsRenderer();
+	final OptionsRenderer options;
 	final String nodeName;
 
 	public NodeDefinitionRenderer(final String name) {
 		nodeName = name;
+		options = new OptionsRenderer();
 	}
 
-	public NodeDefinitionRenderer(final String name, final OptionsRenderer or) {
+	public NodeDefinitionRenderer(final String name, final Options os) {
 		nodeName = name;
-		options = or;
+		options = new OptionsRenderer(os);
 	}
 
 	@Override

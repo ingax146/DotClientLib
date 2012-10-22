@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 
 import se.inax.dot.generator.DotGenerator;
 import se.inax.dot.generator.DotRenderer;
-import se.inax.dot.generator.render.OptionsRenderer;
+import se.inax.dot.generator.Options;
 import se.inax.dot.generator.render.undirected.UndirectedGraphHeader;
 import se.inax.dot.generator.render.undirected.UndirectedLinkRenderer;
 
@@ -23,7 +23,7 @@ public class UndirectedGraphGenerator extends DotGenerator {
 	}
 
 	@Override
-	public void generateEdge(final PrintWriter out, final String source, final String destination, final OptionsRenderer options) {
+	public void generateEdge(final PrintWriter out, final String source, final String destination, final Options options) {
 		final DotRenderer node = new UndirectedLinkRenderer(source, destination, options);
 		node.render(out);
 	}

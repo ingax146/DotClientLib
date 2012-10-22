@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 
 import se.inax.dot.generator.DotGenerator;
 import se.inax.dot.generator.DotRenderer;
-import se.inax.dot.generator.render.OptionsRenderer;
+import se.inax.dot.generator.Options;
 import se.inax.dot.generator.render.directed.DirectedGraphHeaderRenderer;
 import se.inax.dot.generator.render.directed.DirectedLinkRenderer;
 
@@ -23,7 +23,7 @@ public class DirectedGraphGenerator extends DotGenerator {
 	}
 
 	@Override
-	public void generateEdge(final PrintWriter out, final String source, final String destination, final OptionsRenderer options) {
+	public void generateEdge(final PrintWriter out, final String source, final String destination, final Options options) {
 		final DotRenderer node = new DirectedLinkRenderer(source, destination, options);
 		node.render(out);
 	}

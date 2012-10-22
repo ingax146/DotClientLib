@@ -14,8 +14,8 @@ import java.io.StringWriter;
 
 import org.junit.Test;
 
-import se.inax.dot.constants.DotEdgeOptions;
-import se.inax.dot.constants.DotNodeOptions;
+import se.inax.dot.constants.EdgeOptions;
+import se.inax.dot.constants.NodeOptions;
 
 /**
  * These test cases aim to be a short tutorial of how to use this library as
@@ -123,11 +123,11 @@ public class DotFacadeTest {
 		final DotGenerator graphGen = DotGenerator.directedGraphGenerator();
 		graphGen.generateHeader(out, "Turnpile");
 		final OptionsBuilder coinBuilder = graphGen.createOptionsBuilder();
-		coinBuilder.add(graphGen.createStringNodeOption(DotNodeOptions.label, "Closed"));
-		graphGen.generateNode(out, "A", coinBuilder.createRenderer());
+		coinBuilder.add(graphGen.createNodeOption(NodeOptions.label, "Closed"));
+		graphGen.generateNode(out, "A", coinBuilder.buildOptions());
 		final OptionsBuilder passBuilder = graphGen.createOptionsBuilder();
-		passBuilder.add(graphGen.createStringNodeOption(DotNodeOptions.label, "Open"));
-		graphGen.generateNode(out, "B", passBuilder.createRenderer());
+		passBuilder.add(graphGen.createNodeOption(NodeOptions.label, "Open"));
+		graphGen.generateNode(out, "B", passBuilder.buildOptions());
 		graphGen.generateEdge(out, "A", "B");
 		graphGen.generateEdge(out, "B", "A");
 		graphGen.generateFooter(out);
@@ -153,20 +153,20 @@ public class DotFacadeTest {
 		graphGen.generateHeader(out, "Turnpile");
 
 		final OptionsBuilder closedBuilder = graphGen.createOptionsBuilder();
-		closedBuilder.add(graphGen.createStringNodeOption(DotNodeOptions.label, "Closed"));
-		graphGen.generateNode(out, "A", closedBuilder.createRenderer());
+		closedBuilder.add(graphGen.createNodeOption(NodeOptions.label, "Closed"));
+		graphGen.generateNode(out, "A", closedBuilder.buildOptions());
 
 		final OptionsBuilder openBuilder = graphGen.createOptionsBuilder();
-		openBuilder.add(graphGen.createStringNodeOption(DotNodeOptions.label, "Open"));
-		graphGen.generateNode(out, "B", openBuilder.createRenderer());
+		openBuilder.add(graphGen.createNodeOption(NodeOptions.label, "Open"));
+		graphGen.generateNode(out, "B", openBuilder.buildOptions());
 
 		final OptionsBuilder coinBuilder = graphGen.createOptionsBuilder();
-		coinBuilder.add(graphGen.createStringEdgeOption(DotEdgeOptions.label, "coin"));
-		graphGen.generateEdge(out, "A", "B", coinBuilder.createRenderer());
+		coinBuilder.add(graphGen.createEdgeOption(EdgeOptions.label, "coin"));
+		graphGen.generateEdge(out, "A", "B", coinBuilder.buildOptions());
 
 		final OptionsBuilder passBuilder = graphGen.createOptionsBuilder();
-		passBuilder.add(graphGen.createStringEdgeOption(DotEdgeOptions.label, "pass"));
-		graphGen.generateEdge(out, "B", "A", passBuilder.createRenderer());
+		passBuilder.add(graphGen.createEdgeOption(EdgeOptions.label, "pass"));
+		graphGen.generateEdge(out, "B", "A", passBuilder.buildOptions());
 
 		graphGen.generateFooter(out);
 
@@ -186,7 +186,7 @@ public class DotFacadeTest {
 
 		final DotGenerator graphUtil = DotGenerator.directedGraphGenerator();
 		final OptionsBuilder options = graphUtil.createOptionsBuilder();
-		options.add(graphUtil.createStringNodeOption(DotNodeOptions.label, "Hello world"));
+		options.add(graphUtil.createNodeOption(NodeOptions.label, "Hello world"));
 
 		final StringWriter output = new StringWriter();
 		final PrintWriter out = new PrintWriter(output);
@@ -209,15 +209,15 @@ public class DotFacadeTest {
 		graph.generateNode(out, "NodeName");
 
 		final OptionsBuilder nodeOptions = graph.createOptionsBuilder();
-		nodeOptions.add(graph.createNodeOption(DotNodeOptions.shape, "rectangle"));
-		nodeOptions.add(graph.createStringNodeOption(DotNodeOptions.label, "Hej kom å hjälp mig"));
-		graph.generateNode(out, "NodeName2", nodeOptions.createRenderer());
+		nodeOptions.add(graph.createNodeOption(NodeOptions.shape, "rectangle"));
+		nodeOptions.add(graph.createNodeOption(NodeOptions.label, "Hej kom å hjälp mig"));
+		graph.generateNode(out, "NodeName2", nodeOptions.buildOptions());
 
 		graph.generateEdge(out, "NodeName", "NodeName2");
 
 		final OptionsBuilder edgeOptions = graph.createOptionsBuilder();
-		edgeOptions.add(graph.createEdgeOption(DotEdgeOptions.arrowhead, "none"));
-		graph.generateEdge(out, "NodeName", "NodeName2", edgeOptions.createRenderer());
+		edgeOptions.add(graph.createEdgeOption(EdgeOptions.arrowhead, "none"));
+		graph.generateEdge(out, "NodeName", "NodeName2", edgeOptions.buildOptions());
 
 		graph.generateNote(out, "NoteName");
 

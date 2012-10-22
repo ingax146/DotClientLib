@@ -2,9 +2,9 @@ package se.inax.dot.generator.render.undirected;
 
 import java.io.PrintWriter;
 
+import se.inax.dot.generator.Options;
 import se.inax.dot.generator.render.AttributeRenderer;
 import se.inax.dot.generator.render.LinkRenderer;
-import se.inax.dot.generator.render.OptionsRenderer;
 
 /**
  * UndirectedLinkRenderer, use this class to render undirected links in a
@@ -16,11 +16,11 @@ import se.inax.dot.generator.render.OptionsRenderer;
 public final class UndirectedLinkRenderer extends LinkRenderer {
 
 	public UndirectedLinkRenderer(final String sourceName, final String destName) {
-		this(sourceName, destName, new OptionsRenderer());
+		this(sourceName, destName, null);
 	}
 
-	public UndirectedLinkRenderer(final String sourceName, final String destName, final OptionsRenderer or) {
-		super(sourceName, destName, or);
+	public UndirectedLinkRenderer(final String sourceName, final String destName, final Options os) {
+		super(sourceName, destName, os);
 		getOptionsRenderer().add(new AttributeRenderer("arrowhead", "none"));
 	}
 

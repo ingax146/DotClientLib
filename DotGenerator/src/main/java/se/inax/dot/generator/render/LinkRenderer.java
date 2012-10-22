@@ -3,6 +3,7 @@ package se.inax.dot.generator.render;
 import java.io.PrintWriter;
 
 import se.inax.dot.generator.DotRenderer;
+import se.inax.dot.generator.Options;
 
 /**
  * The LinkRenderer class is an abstract class implementing the most
@@ -17,16 +18,13 @@ public abstract class LinkRenderer implements DotRenderer {
 	private OptionsRenderer options = new OptionsRenderer();
 
 	public LinkRenderer(final String sourceName, final String destName) {
-		this(sourceName, destName, new OptionsRenderer());
+		this(sourceName, destName, null);
 	}
 
-	public LinkRenderer(final String sourceName, final String destName, OptionsRenderer or) {
-		if (or == null) {
-			or = new OptionsRenderer();
-		}
+	public LinkRenderer(final String sourceName, final String destName, Options os) {
+		options = new OptionsRenderer(os);
 		source = sourceName;
 		destination = destName;
-		options = or;
 	}
 
 	@Override

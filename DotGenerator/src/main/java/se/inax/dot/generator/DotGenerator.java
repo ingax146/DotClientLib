@@ -3,6 +3,7 @@ package se.inax.dot.generator;
 import java.io.PrintWriter;
 
 import se.inax.dot.constants.DotEdgeOptions;
+import se.inax.dot.constants.DotGraphOptions;
 import se.inax.dot.constants.DotNodeOptions;
 import se.inax.dot.constants.DotPolygonBasedShapes;
 import se.inax.dot.generator.directed.DirectedGraphGenerator;
@@ -63,7 +64,15 @@ public abstract class DotGenerator {
 	 * @param graphName
 	 * @return
 	 */
-	public abstract void generateHeader(PrintWriter out, String graphName);
+	public abstract void generateHeader(final PrintWriter out, final String graphName);
+
+	/**
+	 * 
+	 * @param out
+	 * @param graphName
+	 * @param options
+	 */
+	public abstract void generateHeader(final PrintWriter out, final String graphName, final OptionsRenderer options);
 
 	/**
 	 * Generate the footer of the graph definition.
@@ -170,6 +179,10 @@ public abstract class DotGenerator {
 	}
 
 	public Option createStringNodeOption(final DotNodeOptions key, final String value) {
+		return new StringOption(key.toString(), value);
+	}
+
+	public Option createGraphStringOption(DotGraphOptions key, String value) {
 		return new StringOption(key.toString(), value);
 	}
 }

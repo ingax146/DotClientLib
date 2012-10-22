@@ -17,6 +17,12 @@ public class DirectedGraphGenerator extends DotGenerator {
 	}
 
 	@Override
+	public void generateHeader(final PrintWriter out, final String graphName, final Options options) {
+		final DotRenderer node = new DirectedGraphHeaderRenderer(graphName, options);
+		node.render(out);
+	}
+
+	@Override
 	public void generateEdge(final PrintWriter out, final String source, final String destination) {
 		final DotRenderer node = new DirectedLinkRenderer(source, destination);
 		node.render(out);

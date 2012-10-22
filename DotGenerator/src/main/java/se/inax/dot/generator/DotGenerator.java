@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import se.inax.dot.constants.ArrowType;
 import se.inax.dot.constants.DirType;
+import se.inax.dot.constants.GraphOptions;
 import se.inax.dot.constants.DotPolygonBasedShapes;
 import se.inax.dot.constants.EdgeOptions;
 import se.inax.dot.constants.NodeOptions;
@@ -64,7 +65,15 @@ public abstract class DotGenerator {
 	 * @param graphName
 	 * @return
 	 */
-	public abstract void generateHeader(PrintWriter out, String graphName);
+	public abstract void generateHeader(final PrintWriter out, final String graphName);
+
+	/**
+	 * 
+	 * @param out
+	 * @param graphName
+	 * @param options
+	 */
+	public abstract void generateHeader(final PrintWriter out, final String graphName, final Options options);
 
 	/**
 	 * Generate the footer of the graph definition.
@@ -190,5 +199,9 @@ public abstract class DotGenerator {
 
 	public static Options createEmptyOptions() {
 		return new OptionsImpl();
+	}
+
+	public Option createGraphStringOption(GraphOptions key, String value) {
+		return new StringOption(key.toString(), value);
 	}
 }

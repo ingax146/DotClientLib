@@ -7,9 +7,9 @@ import java.io.StringWriter;
 
 import org.junit.Test;
 
-import se.inax.dot.generator.render.LinkRenderer;
-import se.inax.dot.generator.render.directed.DirectedLinkRenderer;
-import se.inax.dot.generator.render.undirected.UndirectedLinkRenderer;
+import se.inax.dot.client.render.LinkRenderer;
+import se.inax.dot.client.render.directed.DirectedLinkRenderer;
+import se.inax.dot.client.render.undirected.UndirectedLinkRenderer;
 
 /**
  * Test the link rendition. Links should be generated on the same line if

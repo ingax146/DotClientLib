@@ -8,9 +8,9 @@ import java.io.UnsupportedEncodingException;
 
 import org.junit.Test;
 
-import se.inax.dot.generator.DotRenderer;
-import se.inax.dot.generator.render.NodeDefinitionRenderer;
-import se.inax.dot.generator.render.directed.DirectedLinkRenderer;
+import se.inax.dot.client.DotRenderer;
+import se.inax.dot.client.render.NodeDefinitionRenderer;
+import se.inax.dot.client.render.directed.DirectedLinkRenderer;
 
 /**
  * These tests aim to test the dot generator classes, in order to

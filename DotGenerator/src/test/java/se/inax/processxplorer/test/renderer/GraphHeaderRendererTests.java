@@ -7,12 +7,12 @@ import java.io.StringWriter;
 
 import org.junit.Test;
 
+import se.inax.dot.client.DotClient;
+import se.inax.dot.client.OptionsBuilder;
+import se.inax.dot.client.render.GraphHeaderRenderer;
+import se.inax.dot.client.render.directed.DirectedGraphHeaderRenderer;
+import se.inax.dot.client.render.undirected.UndirectedGraphHeaderRenderer;
 import se.inax.dot.constants.GraphOptions;
-import se.inax.dot.generator.DotGenerator;
-import se.inax.dot.generator.OptionsBuilder;
-import se.inax.dot.generator.render.GraphHeaderRenderer;
-import se.inax.dot.generator.render.directed.DirectedGraphHeaderRenderer;
-import se.inax.dot.generator.render.undirected.UndirectedGraphHeaderRenderer;
 
 public class GraphHeaderRendererTests {
 
@@ -45,7 +45,7 @@ public class GraphHeaderRendererTests {
 		StringWriter result = new StringWriter();
 		PrintWriter out = new PrintWriter(result);
 
-		DotGenerator graph = DotGenerator.directedGraphGenerator();
+		DotClient graph = DotClient.directedGraphGenerator();
 		OptionsBuilder options = graph.createOptionsBuilder();
 		options.add(graph.createGraphStringOption(GraphOptions.comment, "A comment"));
 		graph.generateHeader(out, "A", options.buildOptions());

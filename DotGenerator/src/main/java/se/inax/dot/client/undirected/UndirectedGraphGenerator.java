@@ -1,0 +1,38 @@
+package se.inax.dot.client.undirected;
+
+import java.io.PrintWriter;
+
+import se.inax.dot.client.DotClient;
+import se.inax.dot.client.DotRenderer;
+import se.inax.dot.client.Options;
+import se.inax.dot.client.render.undirected.UndirectedGraphHeaderRenderer;
+import se.inax.dot.client.render.undirected.UndirectedLinkRenderer;
+
+public class UndirectedGraphGenerator extends DotClient {
+
+	@Override
+	public void generateHeader(final PrintWriter out, final String graphName) {
+		final DotRenderer header = new UndirectedGraphHeaderRenderer(graphName);
+		header.render(out);
+	}
+
+	@Override
+	public void generateHeader(PrintWriter out, String graphName, Options options) {
+		final DotRenderer node = new UndirectedGraphHeaderRenderer(graphName, options);
+		node.render(out);
+	}
+
+	@Override
+	public void generateEdge(final PrintWriter out, final String source, final String destination) {
+		final DotRenderer node = new UndirectedLinkRenderer(source, destination);
+		node.render(out);
+	}
+
+	@Override
+	public void generateEdge(final PrintWriter out, final String source, final String destination, final Options options) {
+		final DotRenderer node = new UndirectedLinkRenderer(source, destination, options);
+		node.render(out);
+	}
+
+
+}

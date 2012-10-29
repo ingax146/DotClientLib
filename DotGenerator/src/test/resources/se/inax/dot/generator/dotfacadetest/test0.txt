@@ -1,7 +1,0 @@
-digraph graphName {
-	NodeName;
-	NodeName2 [shape=rectangle, label="Hej kom å hjälp mig"];
-	NodeName -> NodeName2;
-	NodeName -> NodeName2 [arrowhead=none];
-	NoteName [shape=note];
-}

@@ -7,8 +7,8 @@ import java.io.StringWriter;
 
 import org.junit.Test;
 
-import se.inax.dot.generator.render.AttributeRenderer;
-import se.inax.dot.generator.render.StringAttributeRenderer;
+import se.inax.dot.client.render.AttributeRenderer;
+import se.inax.dot.client.render.StringAttributeRenderer;
 
 public class AttributeRendererTests {
 	

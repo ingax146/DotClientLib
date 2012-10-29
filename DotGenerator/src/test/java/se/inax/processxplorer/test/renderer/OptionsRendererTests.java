@@ -8,13 +8,13 @@ import java.io.UnsupportedEncodingException;
 
 import org.junit.Test;
 
+import se.inax.dot.client.DotClient;
+import se.inax.dot.client.DotRenderer;
+import se.inax.dot.client.Options;
+import se.inax.dot.client.render.NodeDefinitionRenderer;
+import se.inax.dot.client.render.directed.DirectedLinkRenderer;
 import se.inax.dot.constants.EdgeOptions;
 import se.inax.dot.constants.NodeOptions;
-import se.inax.dot.generator.DotGenerator;
-import se.inax.dot.generator.DotRenderer;
-import se.inax.dot.generator.Options;
-import se.inax.dot.generator.render.NodeDefinitionRenderer;
-import se.inax.dot.generator.render.directed.DirectedLinkRenderer;
 
 public class OptionsRendererTests {
 
@@ -26,8 +26,8 @@ public class OptionsRendererTests {
 		String fillcolor="red";
 		String versionlabel = "1.0,1.1";
 
-		DotGenerator graph = DotGenerator.directedGraphGenerator();
-		Options options = DotGenerator.createEmptyOptions();
+		DotClient graph = DotClient.directedGraphGenerator();
+		Options options = DotClient.createEmptyOptions();
 		options.add(graph.createNodeOption(NodeOptions.shape, "plaintext"));
 		options.add(graph.createNodeOption(NodeOptions.style, "filled"));
 		options.add(graph.createNodeOption(NodeOptions.fillcolor, fillcolor));
@@ -53,8 +53,8 @@ public class OptionsRendererTests {
 		String sourceName = "S1";
 		String destName = "S2";
 
-		DotGenerator graph = DotGenerator.directedGraphGenerator();
-		Options options = DotGenerator.createEmptyOptions();
+		DotClient graph = DotClient.directedGraphGenerator();
+		Options options = DotClient.createEmptyOptions();
 		options.add(graph.createEdgeOption(EdgeOptions.label, "a test value"));
 		options.add(graph.createEdgeOption(EdgeOptions.penwidth, "3"));
 		DotRenderer renderer = new DirectedLinkRenderer(sourceName, destName, options);

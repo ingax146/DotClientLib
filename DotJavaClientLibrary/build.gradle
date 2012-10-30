@@ -1,0 +1,55 @@
+/**
+ * This build file is a good example of how a gradle build file can be
+ * constructed in this environment. It uses local repositories only, and
+ * it publishes built artifacts to the 30_local repository.
+ *
+ * To change the version of the artifact, change the version attribute.
+ *
+ * use CleanEclipse eclipse to create an eclipse project based on this
+ * configuration, and add dependencies below as well.
+ *
+ * TODO: Keep track of build numbers, and optionally add them to the
+ * version number, as well as a version label (for release candidate
+ * or similar).
+ *
+ */
+repositories {
+	flatDir {
+		dirs 'D:/70_libs/10_global';
+	}
+	flatDir {
+		dirs 'D:/70_libs/20_documentum';
+	}
+	flatDir {
+		dirs 'D:/70_libs/30_local'
+	}
+}
+
+apply plugin: 'java';
+apply plugin: 'eclipse';
+
+//Dynamic properties are deprecated:
+//http://gradle.org/docs/current/dsl/org.gradle.api.plugins.ExtraPropertiesExtension.html
+project.ext.implementationTitle = 'Dot Java Client Library';
+project.version = '0.1-dev';
+
+sourceCompatibility = '1.7';
+targetCompatibility = '1.7';
+
+jar {
+	manifest {
+		attributes 'Implementation-Title': project.ext.implementationTitle, 'Implementation-Version': version
+	}
+}
+
+dependencies {
+	testCompile 'junit:junit:4.10';
+}
+
+uploadArchives {
+	repositories {
+	   flatDir {
+		   dirs 'D:/70_libs/30_local'
+	   }
+	}
+}
